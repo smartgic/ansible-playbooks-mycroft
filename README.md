@@ -63,12 +63,12 @@ rpi4b01 ansible_host=192.168.1.97 ansible_user=pi
 
 Basic playbook running on `rpi` group using the `pi` user to connect via SSH _(based on the inventory)_ with some custom variables.
 
-### PLaybook with default values
+### Playbook with default values
 
 Prepare Raspberry Pi, install and configure Mycroft with the default values from the roles.
 ```
 ---
-# file: install.yml
+# file: install-default.yml
 - hosts: rpi
   gather_facts: no
   become: yes
@@ -94,15 +94,15 @@ Prepare Raspberry Pi, install and configure Mycroft with the default values from
 Run the playbook
 ```
 $ cd ansible-playbooks-mycroft
-$ ansible-playbook -i inventory install.yml
+$ ansible-playbook -i inventory install-default.yml
 ```
 
-### Playbook with custome values
+### Playbook with custom values
 
 Prepare Raspberry Pi, install and configure Mycroft with some custom values from the roles.
 ```
 ---
-# file: install.yml
+# file: install-custom.yml
 - hosts: rpi
   gather_facts: no
   become: yes
@@ -146,16 +146,50 @@ Prepare Raspberry Pi, install and configure Mycroft with some custom values from
 Run the playbook
 ```
 $ cd ansible-playbooks-mycroft
-$ ansible-playbook -i inventory install.yml
+$ ansible-playbook -i inventory install-custom.yml
 ```
 
+### Playbook with `picroft` role only
+
+Install and configure Mycroft with some custom values from the roles.
+```
+---
+# file: prepi-only.yml
+- hosts: rpi
+  gather_facts: no
+  become: yes
+
+  pre_tasks:
+    - name: Install Python 3.x Ansible requirement
+      raw: apt-get install -y python3
+      changed_when: no
+      tags:
+        - always
+
+- hosts: rpi
+  become: yes
+
+  vars:
+    # PREPI
+    prepi_pi_user: pi
+    prepi_hostname: mylovelypi
+    prepi_firmware_update: no
+    prepi_overclock: yes
+    prepi_cpu_freq: 1750
+```
+
+Run the playbook
+```
+$ cd ansible-playbooks-mycroft
+$ ansible-playbook -i inventory prepi-only.yml
+```
 
 ### Playbook with `mycroft` role only
 
 Install and configure Mycroft with some custom values from the roles.
 ```
 ---
-# file: install.yml
+# file: mycroft-only.yml
 - hosts: rpi
   gather_facts: no
   become: yes
@@ -183,15 +217,16 @@ Install and configure Mycroft with some custom values from the roles.
     - import_role:
         name: smartgic.mycroft
 ```
+
 Run the playbook
 ```
 $ cd ansible-playbooks-mycroft
-$ ansible-playbook -i inventory install.yml
+$ ansible-playbook -i inventory mycroft-only.yml
 ```
 
 ### Playbook to uninstall Mycroft
 
-Uninstall Mycroft
+Uninstall Mycroft with extra variable passed on the command line.
 ```
 ---
 # file: uninstall.yml
