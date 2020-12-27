@@ -1,0 +1,29 @@
+---
+- hosts: rpi
+  gather_facts: no
+  become: yes
+
+  pre_tasks:
+    - name: Install Python 3.x Ansible requirement
+      raw: apt-get install -y python3
+      changed_when: no
+      tags:
+        - always
+
+- hosts: rpi
+  become: yes
+
+  tasks:
+    - import_role:
+        name: smartgic.prepi
+      tags:
+        - prepi
+        - raspberrypi
+        - rpi
+
+    - import_role:
+        name: smartgic.mycroft
+      tags:
+        - mycroft
+        - picroft
+

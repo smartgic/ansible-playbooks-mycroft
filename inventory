@@ -1,0 +1,6 @@
+[rpi]
+rpi4b01 ansible_host=192.168.1.97 ansible_user=pi
+#rpi4b02 ansible_host=192.168.1.98 ansible_user=vador
+#rpi4b03 ansible_host=192.168.1.99 ansible_user=luke
+#rpi4b04 ansible_host=192.168.1.100 ansible_user=yoda
+#rpi4b05 ansible_host=192.168.1.101 ansible_user=leia

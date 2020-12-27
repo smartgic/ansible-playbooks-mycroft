@@ -1,0 +1,27 @@
+---
+- hosts: rpi
+  gather_facts: no
+  become: yes
+
+  vars_prompt:
+    - name: uninstall
+      private: no
+      default: "no"
+      prompt: |
+        ##########################################
+        # MYCROFT AI VOICE ASSISTANT - UNINSTALL #
+        ##########################################
+
+        This will completely remove any files installed by Mycroft (including pairing
+        information). Do you wish to continue? (yes/no)
+
+  vars:
+    mycroft_uninstall: "{{ false if uninstall == 'no' else true }}"
+
+  tasks:
+    - meta: end_play
+      when: mycroft_uninstall is undefined or mycroft_uninstall | bool == false
+
+    - import_role:
+        name: smartgic.mycroft
+        tasks_from: uninstall

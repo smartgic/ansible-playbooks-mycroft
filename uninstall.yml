@@ -1,0 +1,13 @@
+---
+- hosts: rpi
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - meta: end_play
+      when: mycroft_uninstall is undefined or mycroft_uninstall | bool == false
+
+    - import_role:
+        name: smartgic.mycroft
+        tasks_from: uninstall
+      when: mycroft_uninstall is defined and mycroft_uninstall | bool

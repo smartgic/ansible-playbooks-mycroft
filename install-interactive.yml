@@ -1,0 +1,75 @@
+---
+- hosts: rpi
+  gather_facts: no
+  become: yes
+
+  pre_tasks:
+    - name: Install Python 3.x Ansible requirement
+      raw: apt-get install -y python3
+      changed_when: no
+      tags:
+        - always
+
+- hosts: rpi
+  user: pi
+  become: yes
+
+  vars_prompt:
+    - name: mycroft_branch
+      private: no
+      default: master
+      prompt: |
+        ########################################
+        # MYCROFT AI VOICE ASSISTANT - INSTALL #
+        ########################################
+
+        Do you want to run on 'master' or against a dev branch? Unless you are
+        a developer modifying mycroft-core itself, you should run on the
+        'master' branch. It is updated bi-weekly with a stable release. (dev/master)
+
+    - name: install_mimic
+      private: no
+      default: "yes"
+      prompt: |
+
+        =============================================================================
+
+        Mycroft uses its Mimic technology to speak to you. Mimic can run both
+        locally and from a server. The local Mimic is more robotic, but always
+        available regardless of network connectivity.  It will act as a fallback
+        if unable to contact the Mimic server.
+
+        However, building the local Mimic is time consuming -- it can take hours
+        on slower machines. This can be skipped, but Mycroft will be unable to
+        talk if you lose network connectivity. Would you like to build Mimic
+        locally? (yes/no))
+
+    - name: autoupdate
+      private: no
+      default: "yes"
+      prompt: |
+
+        =============================================================================
+
+        Mycroft is actively developed and constantly evolving. It is recommended
+        that you update regularly. Would you like to automatically update
+        whenever launching Mycroft? This is highly recommended, especially for
+        those running against the 'master' branch. (yes/no)
+
+  vars:
+    mycroft_install_mimic: "{{ false if install_mimic == 'no' else true }}"
+    mycroft_autoupdate: "{{ false if autoupdate == 'no' else true }}"
+
+  tasks:
+    - import_role:
+        name: smartgic.prepi
+      tags:
+        - prepi
+        - raspberrypi
+        - rpi
+
+    - import_role:
+        name: smartgic.mycroft
+      tags:
+        - mycroft
+        - picroft
