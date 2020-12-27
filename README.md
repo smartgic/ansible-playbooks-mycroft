@@ -1,4 +1,18 @@
-# Ansible playbooks for Mycroft AI Voice Assistant
+# Content table
+
+- [Ansible playbooks for Mycroft AI Voice Assistant](#ansible-playbooks-for-mycroft-ai-voice-assistant)
+  * [What does Ansible `prepi` role?](#what-does-ansible--prepi--role-)
+  * [What does Ansible `mycroft` role?](#what-does-ansible--mycroft--role-)
+- [Requirements](#requirements)
+- [Example Playbooks](#example-playbooks)
+  * [Playbook with default values](#playbook-with-default-values)
+  * [Playbook with custom values](#playbook-with-custom-values)
+  * [Playbook with `picroft` role only](#playbook-with--picroft--role-only)
+  * [Playbook with `mycroft` role only](#playbook-with--mycroft--role-only)
+  * [Playbook to uninstall Mycroft](#playbook-to-uninstall-mycroft)
+- [License](#license)
+- [Author Information](#author-information)
+## Ansible playbooks for Mycroft AI Voice Assistant
 
 These Ansible playbooks will help you to install and configure Mycroft AI Voice Assistant on a Raspberry Pi 4B *(and later)* board with Raspberry Pi OS distribution.
 
@@ -10,7 +24,7 @@ The playbooks could call different roles such as [prepi](https://github.com/smar
 
 Before running the playbooks, please have a look to the README of both of roles listed above.
 
-## What does Ansible `prepi` role?
+### What does Ansible `prepi` role?
 
 Using the `prepi` Ansible role will ensure your Raspberry Pi to be properly configured for the best of Mycroft experience.
 
@@ -26,7 +40,7 @@ The role will perform the following tasks _(depending your wish)_:
 - Set CPU governor to `performance` to avoid context switching between the `idle*` kernel functions _(customizable)_
 - Install and configure PulseAudio (non-system wide) _(customizable)_
 
-## What does Ansible `mycroft` role?
+### What does Ansible `mycroft` role?
 
 The role will perform the following tasks:
 
