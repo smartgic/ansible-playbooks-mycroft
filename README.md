@@ -1,19 +1,19 @@
-# Content table
+# Ansible playbooks for Mycroft AI Voice Assistant
 
 - [Ansible playbooks for Mycroft AI Voice Assistant](#ansible-playbooks-for-mycroft-ai-voice-assistant)
-  * [What does Ansible `prepi` role?](#what-does-ansible--prepi--role-)
-  * [What does Ansible `mycroft` role?](#what-does-ansible--mycroft--role-)
-- [Requirements](#requirements)
-- [Example Playbooks](#example-playbooks)
-  * [Playbook with default values](#playbook-with-default-values)
-  * [Playbook with custom values](#playbook-with-custom-values)
-  * [Playbook with `picroft` role only](#playbook-with--picroft--role-only)
-  * [Playbook with `mycroft` role only](#playbook-with--mycroft--role-only)
-  * [Playbook to uninstall Mycroft](#playbook-to-uninstall-mycroft)
-- [License](#license)
-- [Author Information](#author-information)
-## Ansible playbooks for Mycroft AI Voice Assistant
-
+  * [Introduction](#introduction)
+    + [What does Ansible `prepi` role?](#what-does-ansible--prepi--role-)
+    + [What does Ansible `mycroft` role?](#what-does-ansible--mycroft--role-)
+  * [Requirements](#requirements)
+  * [Example Playbooks](#example-playbooks)
+    + [Playbook with default values](#playbook-with-default-values)
+    + [Playbook with custom values](#playbook-with-custom-values)
+    + [Playbook with `picroft` role only](#playbook-with--picroft--role-only)
+    + [Playbook with `mycroft` role only](#playbook-with--mycroft--role-only)
+    + [Playbook to uninstall Mycroft](#playbook-to-uninstall-mycroft)
+  * [License](#license)
+  * [Author Information](#author-information)
+## Introduction
 These Ansible playbooks will help you to install and configure Mycroft AI Voice Assistant on a Raspberry Pi 4B *(and later)* board with Raspberry Pi OS distribution.
 
 Two types of playbook:
