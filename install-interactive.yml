@@ -15,10 +15,34 @@
   become: yes
 
   vars_prompt:
+    - name: firmware_update
+      private: no
+      default: "no"
+      prompt: |
+        ########################################
+        # RASPBERRY PI - CONFIG & OPTIMIZATION #
+        ########################################
+
+        Do you want to update the firmware and the EEPROM? If you are not sure
+        please have a look to the 'prepi' role's README. (yes/no)
+
+    - name: overclock
+      private: no
+      default: "no"
+      prompt: |
+
+        =============================================================================
+
+        Do you want to overclock your Raspberry Pi board? Before going further please
+        read the disclamer on the 'prepi' role's README before taking your decision. (yes/no)
+
     - name: mycroft_branch
       private: no
       default: master
       prompt: |
+
+        =============================================================================
+
         ########################################
         # MYCROFT AI VOICE ASSISTANT - INSTALL #
         ########################################
@@ -42,7 +66,7 @@
         However, building the local Mimic is time consuming -- it can take hours
         on slower machines. This can be skipped, but Mycroft will be unable to
         talk if you lose network connectivity. Would you like to build Mimic
-        locally? (yes/no))
+        locally? (yes/no)
 
     - name: autoupdate
       private: no
@@ -57,6 +81,8 @@
         those running against the 'master' branch. (yes/no)
 
   vars:
+    prepi_firmware_update: "{{ false if firmware_update == 'no' else true }}"
+    prepi_overclock: "{{ false if overclock == 'no' else true }}"
     mycroft_install_mimic: "{{ false if install_mimic == 'no' else true }}"
     mycroft_autoupdate: "{{ false if autoupdate == 'no' else true }}"
 
@@ -65,8 +91,7 @@
         name: smartgic.prepi
       tags:
         - prepi
-        - raspberrypi
-        - rpi
+        - raspberry-pi
 
     - import_role:
         name: smartgic.mycroft

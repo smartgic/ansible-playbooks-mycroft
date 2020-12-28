@@ -83,6 +83,18 @@ rpi4b01 ansible_host=192.168.1.97 ansible_user=pi
 
 Basic playbook running on `rpi` group using the `pi` user to connect via SSH _(based on the inventory)_ with some custom variables.
 
+### Interactive playbook
+
+Using the interactive _(asking questions)_ playbook to install and configure Mycroft.
+
+```
+$ cd ansible-playbook-mycroft
+$ ansible-playbook -i inventory install-interactive.yml
+```
+
+![Interactive installation](./docs/interactive.png)
+
+
 ### Playbook with default values
 
 Prepare Raspberry Pi, install and configure Mycroft with the default values from the roles.
