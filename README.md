@@ -24,6 +24,10 @@ The playbooks could call different roles such as [prepi](https://github.com/smar
 
 Before running the playbooks, please have a look to the README of both of roles listed above.
 
+The following image is the result of the install playbook execution:
+
+![Installation success](./docs/install-success.png)
+
 ### What does Ansible `prepi` role?
 
 Using the `prepi` Ansible role will ensure your Raspberry Pi to be properly configured for the best of Mycroft experience.
