@@ -57,6 +57,7 @@ The role will perform the following tasks:
 - RAMDisk support for IPC
 - Configure Mycroft with custom user profile
 - Optimize PulseAudio for Mycroft
+- Protect Mycroft message bus service port `8181`
 
 ## Requirements
 

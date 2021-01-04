@@ -78,11 +78,23 @@
         whenever launching Mycroft? This is highly recommended, especially for
         those running against the 'master' branch. (yes/no)
 
+    - name: firewall
+      private: no
+      default: "yes"
+      prompt: |
+
+        =============================================================================
+
+        The Mycroft bus is an open websocket with no built-in security measures.
+        You are responsible for protecting the local port 8181 with a firewall as
+        appropriate. Do you want to protect this port? (yes/no)
+
   vars:
     prepi_firmware_update: "{{ false if firmware_update == 'no' else true }}"
     prepi_overclock: "{{ false if overclock == 'no' else true }}"
     mycroft_install_mimic: "{{ false if install_mimic == 'no' else true }}"
     mycroft_autoupdate: "{{ false if autoupdate == 'no' else true }}"
+    mycroft_firewall: "{{ false if firewall == 'no' else true }}"
 
   tasks:
     - import_role:
