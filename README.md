@@ -1,4 +1,5 @@
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-smartgic.mycroft-green.svg?style=flat)](https://galaxy.ansible.com/smartgic/mycroft)
+[![Discord](https://img.shields.io/discord/809074036733902888)](https://discord.gg/Vu7Wmd9j) 
 
 # Ansible playbooks for Mycroft AI Voice Assistant
 
