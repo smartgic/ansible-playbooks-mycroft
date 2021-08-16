@@ -11,7 +11,7 @@
   * [Example Playbooks](#example-playbooks)
     + [Playbook with default values](#playbook-with-default-values)
     + [Playbook with custom values](#playbook-with-custom-values)
-    + [Playbook with `picroft` role only](#playbook-with--picroft--role-only)
+    + [Playbook with `prepi` role only](#playbook-with--prepi--role-only)
     + [Playbook with `mycroft` role only](#playbook-with--mycroft--role-only)
     + [Playbook to uninstall Mycroft](#playbook-to-uninstall-mycroft)
   * [License](#license)
@@ -185,7 +185,7 @@ $ cd ansible-playbooks-mycroft
 $ ansible-playbook -i inventory install-custom.yml
 ```
 
-### Playbook with `picroft` role only
+### Playbook with `prepi` role only
 
 Install and configure Mycroft with some custom values from the roles.
 ```
