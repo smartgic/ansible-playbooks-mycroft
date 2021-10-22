@@ -1,6 +1,7 @@
 ---
 - hosts: rpi
-  gather_facts: no
+  gather_facts: yes
+  user: pi
   become: yes
 
   pre_tasks:
@@ -9,10 +10,6 @@
       changed_when: no
       tags:
         - always
-
-- hosts: rpi
-  user: pi
-  become: yes
 
   vars_prompt:
     - name: firmware_update
