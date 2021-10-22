@@ -106,7 +106,7 @@ Prepare Raspberry Pi, install and configure Mycroft with the default values from
 ---
 # file: install-default.yml
 - hosts: rpi
-  gather_facts: no
+  gather_facts: yes
   become: yes
 
   pre_tasks:
@@ -115,9 +115,6 @@ Prepare Raspberry Pi, install and configure Mycroft with the default values from
       changed_when: no
       tags:
         - always
-
-- hosts: rpi
-  become: yes
 
   tasks:
     - import_role:
@@ -140,7 +137,7 @@ Prepare Raspberry Pi, install and configure Mycroft with some custom values from
 ---
 # file: install-custom.yml
 - hosts: rpi
-  gather_facts: no
+  gather_facts: yes
   become: yes
 
   pre_tasks:
@@ -149,9 +146,6 @@ Prepare Raspberry Pi, install and configure Mycroft with some custom values from
       changed_when: no
       tags:
         - always
-
-- hosts: rpi
-  become: yes
 
   vars:
     # PREPI
@@ -192,7 +186,7 @@ Install and configure Mycroft with some custom values from the roles.
 ---
 # file: prepi-only.yml
 - hosts: rpi
-  gather_facts: no
+  gather_facts: yes
   become: yes
 
   pre_tasks:
@@ -202,9 +196,6 @@ Install and configure Mycroft with some custom values from the roles.
       tags:
         - always
 
-- hosts: rpi
-  become: yes
-
   vars:
     # PREPI
     prepi_pi_user: pi
@@ -212,6 +203,10 @@ Install and configure Mycroft with some custom values from the roles.
     prepi_firmware_update: no
     prepi_overclock: yes
     prepi_cpu_freq: 1750
+
+  tasks:
+    - import_role:
+        name: smartgic.prepi
 ```
 
 Run the playbook
@@ -236,9 +231,6 @@ Install and configure Mycroft with some custom values from the roles.
       changed_when: no
       tags:
         - always
-
-- hosts: rpi
-  become: yes
 
   vars:
     mycroft_branch: dev
