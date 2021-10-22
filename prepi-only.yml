@@ -1,0 +1,25 @@
+---
+# file: prepi-only.yml
+- hosts: rpi
+  gather_facts: yes
+  become: yes
+
+  pre_tasks:
+    - name: Install Python 3.x Ansible requirement
+      raw: apt-get install -y python3
+      changed_when: no
+      tags:
+        - always
+
+  vars:
+    # PREPI
+    prepi_pi_user: pi
+    prepi_hostname: rpi4b01
+    prepi_firmware_update: yes
+    prepi_overclock: yes
+    prepi_cpu_freq: 2000
+    prepi_force_turbo: yes
+
+  tasks:
+    - import_role:
+        name: smartgic.prepi
